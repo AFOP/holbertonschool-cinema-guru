@@ -1,0 +1,31 @@
+/* src/components/general/general.css */
+.input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-wrapper > input {
+    margin-left: 10px;
+  }
+  
+  .select-input-container {
+    margin-bottom: 20px;
+  }
+  
+  .custom-button {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Add more CSS rules as needed to match the Figma design */
+  
