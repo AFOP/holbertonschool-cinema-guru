@@ -11,9 +11,9 @@ const SelectInput = ({ label, options, className, value, setValue }) => {
     <div className={`select-input-container ${className}`}>
       {label && <label>{label}</label>}
       <select value={value} onChange={handleSelect}>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option}
           </option>
         ))}
       </select>

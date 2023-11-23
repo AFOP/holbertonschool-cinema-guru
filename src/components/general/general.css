@@ -1,31 +1,103 @@
 /* src/components/general/general.css */
 .input-container {
-    margin-bottom: 20px;
-  }
-  
-  .input-wrapper {
-    display: flex;
-    align-items: center;
-  }
-  
-  .input-wrapper > input {
-    margin-left: 10px;
-  }
-  
-  .select-input-container {
-    margin-bottom: 20px;
-  }
-  
-  .custom-button {
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar-container {
-    margin-bottom: 20px;
-  }
-  
-  /* Add more CSS rules as needed to match the Figma design */
-  
+  width: 25%;
+}
+
+.input-container.custom-input.date-input {
+  background-color: black;
+  color: white;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper>input {
+  text-align: left;
+  border: none;
+  border-bottom: 2px solid rgba(255, 0, 0, 0.458);
+  /* Línea roja en la parte inferior */
+  padding: 5px;
+  /* Añade algún relleno para separar el texto del borde inferior */
+}
+
+.input-wrapper>input:focus {
+  outline: none;
+  /* Elimina el contorno predeterminado al enfocar */
+}
+
+.input-wrapper.date-input {
+  background-color: black;
+  color: white;
+}
+
+.input-container label {
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.input-container label .icon {
+  margin-right: 10px;
+  color: pink;
+}
+
+.select-input-container {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  background-color: black;
+  color: white;
+}
+
+.select-input-container select {
+  background-color: black;
+  color: white;
+  border: none;
+  border-bottom: 2px solid rgba(255, 0, 0, 0.458);
+}
+
+.custom-select {
+  background-color: black;
+  color: white;
+}
+
+.select-input-container>select:focus {
+  outline: none;
+  /* Elimina el contorno predeterminado al enfocar */
+}
+
+.select-input-container label {
+  text-align: left;
+}
+
+.select-input-container option {
+  text-align: left;
+  border: none;
+}
+
+.custom-button {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+  outline: none;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 2%;
+  transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+  background: rgb(253, 149, 149); /* Cambiar el color al pasar el cursor */
+}
+
+.search-bar-container {
+  margin-bottom: 20px;
+}
+
+/* Add more CSS rules as needed to match the Figma design */
