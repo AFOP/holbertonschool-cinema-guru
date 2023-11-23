@@ -97,7 +97,37 @@
 }
 
 .search-bar-container {
-  margin-bottom: 20px;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  margin: 1%;
+  padding: 0.5%;
+  border: none;
+  background-color: black;
+  border-radius: 5%;
 }
 
+.search-bar-container > input {
+  background-color: rgba(128, 128, 128, 0.364);
+  color: gray;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar-container > input {
+  flex: 1;
+}
+
+.search-bar-container > input:focus {
+  outline: none;
+}
+
+.search-bar-container > input:hover {
+  color: white;
+}
+
+.search-bar-container > label {
+  margin-right: 10px; /* Ajusta según sea necesario */
+  color: gray; /* Puedes cambiar el color según tus necesidades */
+}
 /* Add more CSS rules as needed to match the Figma design */

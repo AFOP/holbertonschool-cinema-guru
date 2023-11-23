@@ -2,7 +2,7 @@
 import React from 'react';
 import './general.css';
 
-const Button = ({ label, className, onClick, icon }) => {
+const Button = ({ label, className, onClick }) => {
   return (
     <button className={`custom-button ${className}`} onClick={onClick}>
       {label}

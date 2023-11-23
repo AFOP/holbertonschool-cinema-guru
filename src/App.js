@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import Input from './components/general/Input';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import SelectInput from './components/general/SelectInput';
 import Button from './components/general/Button';
+import SearchBar from './components/general/SearchBar';
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -37,8 +38,13 @@ function App() {
         label="Load More.."
         className="custom-button"
         onClick={handleButtonClick}
-        icon={faUser}  // Puedes cambiar el icono según tus necesidades
       />
+
+      <SearchBar
+        title="Search Movies"
+        setTitle="Search Movies"
+        icon={faMagnifyingGlass}
+      /> 
 
       {/* Otro código en tu aplicación */}
     </div>
