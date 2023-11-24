@@ -1,1 +1,31 @@
 /* src/routes/auth/auth.css */
+body {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Ajustar la altura según sea necesario */
+    margin: 0;
+}
+
+.containter {
+    background-color: white;
+}
+
+.custom-button {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+}
+
+.custom-button.active {
+    background: rgb(253, 149, 149);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

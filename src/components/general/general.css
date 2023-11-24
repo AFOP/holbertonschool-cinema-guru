@@ -81,19 +81,17 @@
 .custom-button {
   padding: 10px;
   cursor: pointer;
-  display: flex;
   align-items: center;
   box-shadow: none;
   outline: none;
   background: red;
   color: white;
   border: none;
-  border-radius: 2%;
   transition: background-color 0.3s;
 }
 
 .custom-button:hover {
-  background: rgb(253, 149, 149); /* Cambiar el color al pasar el cursor */
+  background: rgba(253, 149, 149, 0.716); /* Cambiar el color al pasar el cursor */
 }
 
 .search-bar-container {
