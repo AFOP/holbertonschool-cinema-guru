@@ -17,6 +17,7 @@ function App() {
         },
         body: JSON.stringify(data.body),
       });
+      
       return response.json();
     } catch (error) {
       throw new Error('Error sending POST request');
@@ -24,21 +25,30 @@ function App() {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    sendPostRequest('/api/auth/', { headers: { Authorization: `Bearer ${accessToken}` } })
-      .then(response => {
-        setLoggedIn(true);
-        setUserUsername(response.username);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      });
+    try {
+      const accessToken = localStorage.getItem('token');
+  
+      sendPostRequest('http://localhost:8000/api/auth/', { headers: { Authorization: `Bearer ${accessToken}` } })
+        .then(response => {
+          if (response && response.success) { // o la lógica que uses para identificar una autenticación exitosa
+            setLoggedIn(true);
+            setUserUsername(response.userUsername);
+          } else {
+            // Manejar el escenario en el que la autenticación no fue exitosa
+            console.error("Autenticación fallida:", response);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    } catch (error) {
+      console.error("Error in useEffect:", error);
+    }
   }, []);
 
   return (
     <div className="App">
-      {isLoggedIn ? <Dashboard /> : <Authentication setIsLoggedIn={setLoggedIn} setUserUsername={setUserUsername} />}
+      {isLoggedIn ? <Dashboard /> : <Authentication setIsLoggedIn={setLoggedIn} setUserUsername={setUserUsername} /> }
     </div>
   );
 }

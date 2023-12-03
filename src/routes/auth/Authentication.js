@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import './auth.css';
-
-// Objetos generales como botones input 
+import axios from 'axios';
 import Button from '../../components/general/Button';
-
-// Otros componentes
+import { faKey, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Login from './Login';
 import Register from './Register';
+import './auth.css';
 
 function Authentication({ setIsLoggedIn, setUserUsername }) {
   // Definir el estado y la función para actualizar el estado
@@ -14,56 +12,86 @@ function Authentication({ setIsLoggedIn, setUserUsername }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Función para manejar el cambio en el estado switch
-  const handleSignInClick = () => {
-    setSwitchState(true);
-  };
-
-  // Función para manejar el cambio en el estado switch
-  const handleSignUpClick = () => {
-    setSwitchState(false);
+  // Función para manejar el cambio de estado entre Sign In y Sign Up
+  const handleSwitch = async (e) => {
+    e.preventDefault();
+    setSwitchState((prevState) => !prevState);
   };
 
   // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  };
+    console.log('Usuario', username);
+    console.log('Password', password);
 
-  const handleFormSubmit = () => {
-    setIsLoggedIn(true);  // O false, según la lógica de tu aplicación
-    setUserUsername(username);
+    try {
+      const endpoint = switchState ? 'http://localhost:8000/api/auth/login' : 'http://localhost:8000/api/auth/register';
 
-    // También puedes hacer algo con el estado password si es necesario
+      // Usa Axios para realizar la solicitud POST
+      const response = await axios.post(endpoint, {
+        username: username,
+        password: password
+      });
+
+      console.log('Logged', response.data)
+      // Verifica si la solicitud fue exitosa (por ejemplo, response.data.success)
+      if (response.status === 200) {
+        // Extrae el token de la respuesta
+        const accessToken = response.data.accessToken;
+
+        // Almacena el token en el localStorage
+        localStorage.setItem('token', accessToken);
+
+        // Establece el estado userUsername con el nombre de usuario ingresado
+        setUserUsername(username);
+
+        setIsLoggedIn(true);
+      } else {
+        // Maneja el fallo de autenticación
+        throw new Error('La autenticación falló');
+      }
+    } catch (error) {
+      console.error('Error durante la autenticación:', error.message);
+    }
   };
 
   return (
-    <div className='containter'>
-        <Button
-          label="Sign In"
-          className={`custom-button ${switchState ? 'active' : ''}`}
-          onClick={handleSignInClick}
+    <div className='container-ac'>
+    <form onSubmit={handleSwitch}>
+      <Button
+        label="Sign In"
+        className={`custom-button-up ${switchState ? 'active' : ''}`}
+        onClick={handleSwitch}
+      />
+      <Button
+        label="Sign Up"
+        className={`custom-button-up ${switchState ? '' : 'active'}`}
+        onClick={handleSwitch}
+      />
+    </form>
+    <form onSubmit={handleSubmit}>
+      {switchState ? (
+        <Login
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
         />
-        <Button
-          label="Sign Up"
-          className={`custom-button ${switchState ? '' : 'active'}`}
-          onClick={handleSignUpClick}
+      ) : (
+        <Register
+          username={username}
+          password={password}
+          setUsername={setUsername}
+          setPassword={setPassword}
         />
-        {/* Por defecto ingresa a login */}
-        {switchState ? (
-          <Login
-            username={username}
-            password={password}
-            setUsername={setUsername}
-            setPassword={setPassword}
-          />
-        ) : (
-          <Register
-            username={username}
-            password={password}
-            setUsername={setUsername}
-            setPassword={setPassword}
-          />
-        )}
+      )}
+      <Button
+        label={`${switchState ? 'Sign In' : 'Sign Up'}`}
+        type="submit"
+        className="custom-button authentication"
+        icon={switchState ? faKey : faPlus}
+      />
+    </form>
     </div>
   );
 }

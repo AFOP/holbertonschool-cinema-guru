@@ -9,18 +9,25 @@ body {
     margin: 0;
 }
 
-.containter {
+.container-ac {
+    width: 400px;
     background-color: white;
 }
 
-.custom-button {
+.form-authentication {
+    padding: 5%;
+}
+.custom-button-up {
     width: 50%;
-    text-align: center;
     display: inline-block;
 }
 
-.custom-button.active {
+.custom-button-up.active {
     background: rgb(253, 149, 149);
+}
+
+.custom-button.up {
+    text-align: right;
 }
 
 input {

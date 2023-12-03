@@ -1,34 +1,36 @@
 // src/routes/auth/Login.js
 import React from 'react';
+import Input from '../../components/general/Input';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import './auth.css';
 
 const Login = ({ username, password, setUsername, setPassword }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic for handling the login submission if needed
-  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <div>
         {/* Input for the username */}
         <h5>Sign in with your account</h5>
-        <input
+        <Input
+          label="UserName:"
           type="text"
-          placeholder="Username del Login"
+          placeholder="UserName"
+          className="custom-input"
+          icon={faUser}
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          setValue={setUsername}
         />
-        {/* Input for the password */}
-        <input
+        <Input
+          label="Password:"
           type="password"
           placeholder="Password"
+          className="custom-input"
+          icon={faKey}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          setValue={setPassword}
         />
-        {/* Button for submit */}
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,34 +1,35 @@
 // src/routes/auth/Register.js
 import React from 'react';
+import Input from '../../components/general/Input';
+import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import './auth.css';
 
 const Register = ({ username, password, setUsername, setPassword }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic for handling the registration submission if needed
-  };
-
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <div>
         {/* Input for the username */}
         <h5>Create a new account</h5>
-        <input
+        <Input
+          label="UserName:"
           type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="UserName"
+          className="custom-input"
+          icon={faUser}
+          value={username}  // Asegúrate de que esté configurado correctamente
+          setValue={setUsername}
         />
         {/* Input for the password */}
-        <input
+        <Input
+          label="Password:"
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          className="custom-input"
+          icon={faKey}
+          value={password}  // Asegúrate de que esté configurado correctamente
+          setValue={setPassword}
         />
-        {/* Button for submit */}
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -3,22 +3,31 @@ import React, { useState } from 'react';
 import './general.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Input({ label, type, className, icon, inputAttributes }) {
-  // Definir el estado y la función para actualizar el estado
-  const [inputValue, setInputValue] = useState('');
+function Input({ label, type, className, icon, value, setValue, inputAttributes }) {
+  // Use el valor proporcionado o el estado local si no se proporciona un valor externo
+  const [inputValue, setInputValue] = useState(value || '');
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
+    // Actualiza el valor externo si se proporciona una función de cambio de valor (setValue)
+    if (setValue) {
+      setValue(e.target.value);
+    }
   };
 
   return (
     <div className={`input-container ${className} ${type}-input`}>
       <label>
-        {type === 'text' && <FontAwesomeIcon icon={icon} className="icon" />}
+        {<FontAwesomeIcon icon={icon} className="icon" />}
         {label}
       </label>
       <div className={`input-wrapper ${type}-input`}>
-        <input type={type} value={inputValue} onChange={handleInput} {...inputAttributes} />
+        <input 
+          type={type} 
+          id={label} 
+          value={inputValue} 
+          onChange={handleInput} 
+          {...inputAttributes} />
       </div>
     </div>
   );

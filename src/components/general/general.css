@@ -1,6 +1,6 @@
 /* src/components/general/general.css */
 .input-container {
-  width: 25%;
+  margin: 2%;
 }
 
 .input-container.custom-input.date-input {
@@ -74,14 +74,13 @@
 }
 
 .select-input-container option {
-  text-align: left;
   border: none;
 }
 
 .custom-button {
   padding: 10px;
+  text-align: center;
   cursor: pointer;
-  align-items: center;
   box-shadow: none;
   outline: none;
   background: red;
@@ -91,7 +90,11 @@
 }
 
 .custom-button:hover {
-  background: rgba(253, 149, 149, 0.716); /* Cambiar el color al pasar el cursor */
+  background: rgba(253, 149, 149, 0.716);
+}
+
+.custom-button label .icon {
+  margin-right: 10px;
 }
 
 .search-bar-container {
